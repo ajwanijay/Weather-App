@@ -3,10 +3,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import 'bootstrap/dist/css/bootstrap.css'
+import { BrowserRouter } from 'react-router-dom';
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import weatherpagereducer from './container/reducer'
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+
+export const store = createStore(weatherpagereducer, composeWithDevTools());
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
